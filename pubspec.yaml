@@ -22,10 +22,13 @@ dev_dependencies:
 
   flutter_lints: ^2.0.0
 
+
 flutter:
   uses-material-design: true
   assets:
     - assets/images/
-    - assets/images/abc/
-    - assets/images/123/
+    - assets/images/english-alphabets/
+    - assets/images/english-numbers/
+    - assets/images/urdu-alphabets/
+    - assets/images/urdu-numbers/
     - assets/images/home/

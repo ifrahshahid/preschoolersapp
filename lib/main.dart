@@ -1,14 +1,17 @@
 // Below commented blocks are for google ads
 
 import 'package:flutter/material.dart';
-import 'AlphabetImage.dart';
+import 'EnglishAlphabetsImage.dart';
 import 'EnglishNumbersImage.dart';
+import 'UrduAlphabetsImage.dart';
+import 'UrduNumbersImage.dart';
 
 //import 'package:google_mobile_ads/google_mobile_ads.dart';
 //import 'package:preschoolers_app/ad_helper.dart';
 
+
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -80,6 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
                 height: 280,
                 child: ListView(scrollDirection: Axis.horizontal, children: [
+
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: InkWell(
@@ -87,12 +91,13 @@ class _MyHomePageState extends State<MyHomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => AlphabetImage(),
+                            builder: (context) => EnglishAlphabetsImage(),
                           ),
                         );
                       },
                       child: Container(
-                        width: 200,
+                        width: MediaQuery.of(context).size.width * 0.21, // 21% of device width
+                        height: MediaQuery.of(context).size.width * 0.28, // 28% of device
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.grey,
@@ -105,6 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
+
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: InkWell(
@@ -117,7 +123,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         );
                       },
                       child: Container(
-                        width: 200,
+                        width: MediaQuery.of(context).size.width * 0.21, // 21% of device width
+                        height: MediaQuery.of(context).size.width * 0.28, // 28% of device
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.grey,
@@ -134,51 +141,56 @@ class _MyHomePageState extends State<MyHomePage> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: InkWell(
-                        onTap: () {},
-                        child: Container(
-                          width: 200,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.grey),
-                          clipBehavior: Clip.antiAlias,
-                          child: Image.asset(
-                            'assets/images/home/urdu_alphabets.jpg',
-                            fit: BoxFit.cover,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => UrduAlphabetsImage(),
                           ),
-                        )),
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.21, // 21% of device width
+                        height: MediaQuery.of(context).size.width * 0.28, // 28% of device
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.grey,
+                        ),
+                        clipBehavior: Clip.antiAlias,
+                        child: Image.asset(
+                          'assets/images/home/urdu_alphabets.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: InkWell(
-                        onTap: () {},
-                        child: Container(
-                          width: 200,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.grey),
-                          clipBehavior: Clip.antiAlias,
-                          child: Image.asset(
-                            'assets/images/home/urdu_numbers.jpg',
-                            fit: BoxFit.cover,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => UrduNumbersImage(),
                           ),
-                        )),
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.21, // 21% of device width
+                        height: MediaQuery.of(context).size.width * 0.28, // 28% of device
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.grey,
+                        ),
+                        clipBehavior: Clip.antiAlias,
+                        child: Image.asset(
+                          'assets/images/home/urdu_numbers.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                        onTap: () {},
-                        child: Container(
-                          width: 200,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.grey),
-                          clipBehavior: Clip.antiAlias,
-                          child: Image.asset(
-                            'assets/images/home/urdu_numbers.jpg',
-                            fit: BoxFit.cover,
-                          ),
-                        )),
-                  ),
+
 
                   // if (_bannerAd != null)
                   //   Align(
@@ -190,6 +202,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   //     ),
                   //   )
                 ])),
+
+
             Container(
                 height: 40,
                 width: MediaQuery.of(context).size.width,
@@ -201,16 +215,20 @@ class _MyHomePageState extends State<MyHomePage> {
                     Align(
                       alignment: Alignment.bottomLeft,
                       child: Image.asset(
-                        'assets/images/logo.png',
-                        height: 30,
-                        width: 30,
+                        'assets/images/home/eagle.png',
+                        height: MediaQuery.of(context).size.width * 0.06, // 6% height
+                        width: MediaQuery.of(context).size.width * 0.12, // 12% width
                       ),
                     ),
                     Align(
                       alignment: Alignment.bottomRight,
-                      child: IconButton(
-                        icon: Icon(Icons.settings),
-                        onPressed: () {},
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.06,
+                        height: MediaQuery.of(context).size.width * 0.06,
+                        child: IconButton(
+                          icon: Icon(Icons.settings),
+                          onPressed: () {},
+                        ),
                       ),
                     ),
                   ],
