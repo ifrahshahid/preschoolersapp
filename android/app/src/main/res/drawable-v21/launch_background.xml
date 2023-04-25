@@ -7,7 +7,7 @@
         <bitmap
             android:gravity="center"
             android:screenOrientation="landscape"
-            android:src="@mipmap/launch_image" />
+            android:src="@mipmap/launch_image"/>
 
     </item>
 </layer-list>

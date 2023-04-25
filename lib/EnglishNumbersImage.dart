@@ -51,71 +51,88 @@ class _EnglishNumbersImageState extends State<EnglishNumbersImage> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(_images[_currentIndex]),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Positioned(
-            top: 30,
-            left: 10,
-            child: Container(
+      body: GestureDetector(
+        onPanUpdate: (details) {
+          if (details.delta.dx > 0) {
+            _decrementIndex(); // Swipe right
+          } else if (details.delta.dx < 0) {
+            _incrementIndex(); // Swipe left
+          }
+        },
+        child: Stack(
+          children: [
+            Container(
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.5),
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: IconButton(
-                icon: Icon(Icons.close),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
+                image: DecorationImage(
+                  image: AssetImage(_images[_currentIndex]),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          Positioned(
-            bottom: 20,
-            right: 20,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Row(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: IconButton(
-                      icon: Icon(Icons.arrow_back),
-                      onPressed: _decrementIndex,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(width: 16),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: IconButton(
-                      icon: Icon(Icons.arrow_forward),
-                      onPressed: _incrementIndex,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
+            Positioned(
+              top: 30,
+              left: 10,
+              child: Container(
+                width: MediaQuery.of(context).size.width *
+                    0.06, // 6% of device width
+                height: MediaQuery.of(context).size.width *
+                    0.06, // 6% of device width
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.5),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: IconButton(
+                  icon: Icon(Icons.close),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
               ),
             ),
-          ),
-        ],
+            Positioned(
+              bottom: 20,
+              right: 20,
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal:
+                  MediaQuery.of(context).size.width * 0.045, // 9% of width
+                  vertical:
+                  MediaQuery.of(context).size.width * 0.03, // 6% of height
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: IconButton(
+                        icon: Icon(Icons.arrow_back),
+                        onPressed: _decrementIndex,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(width: 16),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: IconButton(
+                        icon: Icon(Icons.arrow_forward),
+                        onPressed: _incrementIndex,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

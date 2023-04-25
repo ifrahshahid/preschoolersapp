@@ -23,6 +23,9 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 
+flutter_native_splash:
+  background_image: assets/images/home/splashscreen.png
+
 flutter:
   uses-material-design: true
   assets:

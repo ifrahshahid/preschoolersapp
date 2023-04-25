@@ -5,12 +5,19 @@ import 'EnglishAlphabetsImage.dart';
 import 'EnglishNumbersImage.dart';
 import 'UrduAlphabetsImage.dart';
 import 'UrduNumbersImage.dart';
+import 'package:flutter/services.dart';
 
 //import 'package:google_mobile_ads/google_mobile_ads.dart';
 //import 'package:preschoolers_app/ad_helper.dart';
 
-
 void main() {
+  // Step 2
+  WidgetsFlutterBinding.ensureInitialized();
+  // Step 3
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
+  ]).then((value) => runApp(MyApp()));
   runApp(MyApp());
 }
 
@@ -77,166 +84,134 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: null,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-                height: 280,
-                child: ListView(scrollDirection: Axis.horizontal, children: [
-
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => EnglishAlphabetsImage(),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.21, // 21% of device width
-                        height: MediaQuery.of(context).size.width * 0.28, // 28% of device
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.grey,
-                        ),
-                        clipBehavior: Clip.antiAlias,
-                        child: Image.asset(
-                          'assets/images/home/english_alphabets.jpg',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => EnglishNumbersImage(),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.21, // 21% of device width
-                        height: MediaQuery.of(context).size.width * 0.28, // 28% of device
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.grey,
-                        ),
-                        clipBehavior: Clip.antiAlias,
-                        child: Image.asset(
-                          'assets/images/home/english_numbers.jpg',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => UrduAlphabetsImage(),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.21, // 21% of device width
-                        height: MediaQuery.of(context).size.width * 0.28, // 28% of device
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.grey,
-                        ),
-                        clipBehavior: Clip.antiAlias,
-                        child: Image.asset(
-                          'assets/images/home/urdu_alphabets.jpg',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => UrduNumbersImage(),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.21, // 21% of device width
-                        height: MediaQuery.of(context).size.width * 0.28, // 28% of device
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.grey,
-                        ),
-                        clipBehavior: Clip.antiAlias,
-                        child: Image.asset(
-                          'assets/images/home/urdu_numbers.jpg',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-
-
-                  // if (_bannerAd != null)
-                  //   Align(
-                  //     alignment: Alignment.topCenter,
-                  //     child: Container(
-                  //       width: _bannerAd!.size.width.toDouble(),
-                  //       height: _bannerAd!.size.height.toDouble(),
-                  //       child: AdWidget(ad: _bannerAd!),
-                  //     ),
-                  //   )
-                ])),
-
-
-            Container(
-                height: 40,
-                width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom,
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/home/home-background.png'),
+                  fit: BoxFit.cover,
                 ),
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Image.asset(
-                        'assets/images/home/eagle.png',
-                        height: MediaQuery.of(context).size.width * 0.06, // 6% height
-                        width: MediaQuery.of(context).size.width * 0.12, // 12% width
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.06,
-                        height: MediaQuery.of(context).size.width * 0.06,
-                        child: IconButton(
-                          icon: Icon(Icons.settings),
-                          onPressed: () {},
+              ),
+            ),
+          ),
+          SafeArea(
+            child: Column(
+              children: [
+                SizedBox(
+                    height: 300,
+                    child:
+                    ListView(scrollDirection: Axis.horizontal, children: [
+                      SizedBox(
+                        width: 200,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EnglishAlphabetsImage(),
+                              ),
+                            );
+                          },
+                          child: Image.asset(
+                            'assets/images/home/english-alphabets.png',
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
+
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EnglishNumbersImage(),
+                            ),
+                          );
+                        },
+                        child: Image.asset(
+                          'assets/images/home/english-numbers.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UrduAlphabetsImage(),
+                            ),
+                          );
+                        },
+                        child: Image.asset(
+                          'assets/images/home/urdu-alphabets.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UrduNumbersImage(),
+                            ),
+                          );
+                        },
+                        child: Image.asset(
+                          'assets/images/home/urdu-numbers.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+
+                      // if (_bannerAd != null)
+                      //   Align(
+                      //     alignment: Alignment.topCenter,
+                      //     child: Container(
+                      //       width: _bannerAd!.size.width.toDouble(),
+                      //       height: _bannerAd!.size.height.toDouble(),
+                      //       child: AdWidget(ad: _bannerAd!),
+                      //     ),
+                      //   )
+                    ])),
+                Container(
+                    height: 40,
+                    width: MediaQuery.of(context).size.width,
+                    margin: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom,
                     ),
-                  ],
-                ))
-          ],
-        ),
+                    child: Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Image.asset(
+                            'assets/images/home/logo.png',
+                            height: MediaQuery.of(context).size.width *
+                                0.06, // 6% height
+                            width: MediaQuery.of(context).size.width *
+                                0.12, // 12% width
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.06,
+                            height: MediaQuery.of(context).size.width * 0.06,
+                            child: IconButton(
+                              icon: Icon(Icons.settings),
+                              onPressed: () {},
+                            ),
+                          ),
+                        ),
+                      ],
+                    ))
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
 }
-
