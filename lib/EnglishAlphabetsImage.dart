@@ -6,6 +6,7 @@ class EnglishAlphabetsImage extends StatefulWidget {
 }
 
 class _EnglishAlphabetsImageState extends State<EnglishAlphabetsImage> {
+  static const double _swipeThreshold = 50; // threshold in logical pixels
   int _currentIndex = 0;
   List<String> _images = [
     'assets/images/english-alphabets/A3.png',
@@ -56,15 +57,16 @@ class _EnglishAlphabetsImageState extends State<EnglishAlphabetsImage> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
         onPanUpdate: (details) {
           if (details.delta.dx > 0) {
-            _decrementIndex(); // Swipe right
+            _incrementIndex(); // Swipe right
           } else if (details.delta.dx < 0) {
-            _incrementIndex(); // Swipe left
+            _decrementIndex(); // Swipe left
           }
         },
         child: Stack(
